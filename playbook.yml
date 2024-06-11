@@ -1,0 +1,9 @@
+---
+- name: Setup and configure SoftEther VPN server
+  hosts: softether_servers
+  become: true
+  roles:
+    - install_softether
+    - start_softether
+    - configure_softether
+

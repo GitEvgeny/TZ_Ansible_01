@@ -1,0 +1,7 @@
+---
+- name: Configure SoftEther VPN server
+  include_tasks: create_virtual_hubs.yml
+
+- name: Create users in virtual hubs
+  include_tasks: create_users.yml
+

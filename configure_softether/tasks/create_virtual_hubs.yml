@@ -1,0 +1,16 @@
+---
+- name: Create VirtualHub PROD
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:PROD /CMD:CreateHub PROD /PASSWORD:your_password
+  args:
+    creates: /opt/vpnserver/hub.prod.config
+
+- name: Create VirtualHub TEST
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:TEST /CMD:CreateHub TEST /PASSWORD:your_password
+  args:
+    creates: /opt/vpnserver/hub.test.config
+
+- name: Create VirtualHub STAFF
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:STAFF /CMD:CreateHub STAFF /PASSWORD:your_password
+  args:
+    creates: /opt/vpnserver/hub.staff.config
+

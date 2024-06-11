@@ -1,0 +1,6 @@
+---
+- name: Start SoftEther VPN server
+  systemd:
+    name: vpnserver
+    state: started
+

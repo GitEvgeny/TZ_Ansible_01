@@ -1,0 +1,21 @@
+---
+- name: Create users for VirtualHub PROD
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:PROD /CMD:UserCreate pr_user1 /GROUP:none /REALNAME: /NOTE:
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:PROD /CMD:UserPasswordSet pr_user1 /PASSWORD:your_password
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:PROD /CMD:UserCreate pr_user2 /GROUP:none /REALNAME: /NOTE:
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:PROD /CMD:UserPasswordSet pr_user2 /PASSWORD:your_password
+
+- name: Create users for VirtualHub TEST
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:TEST /CMD:UserCreate t_user1 /GROUP:none /REALNAME: /NOTE:
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:TEST /CMD:UserPasswordSet t_user1 /PASSWORD:your_password
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:TEST /CMD:UserCreate t_user2 /GROUP:none /REALNAME: /NOTE:
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:TEST /CMD:UserPasswordSet t_user2 /PASSWORD:your_password
+
+- name: Create users for VirtualHub STAFF
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:STAFF /CMD:UserCreate ceo /GROUP:none /REALNAME: /NOTE:
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:STAFF /CMD:UserPasswordSet ceo /PASSWORD:your_password
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:STAFF /CMD:UserCreate cto /GROUP:none /REALNAME: /NOTE:
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:STAFF /CMD:UserPasswordSet cto /PASSWORD:your_password
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:STAFF /CMD:UserCreate admin /GROUP:none /REALNAME: /NOTE:
+  command: /opt/vpnserver/vpncmd localhost /SERVER /HUB:STAFF /CMD:UserPasswordSet admin /PASSWORD:your_password
+

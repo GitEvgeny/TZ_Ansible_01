@@ -1,0 +1,53 @@
+---
+- name: Install dependencies
+  apt:
+    name: 
+      - build-essential
+      - gcc
+      - make
+      - wget
+      - unzip
+    state: present
+    update_cache: yes
+
+- name: Download SoftEther VPN server
+  get_url:
+    url: https://www.softether-download.com/files/softether/v4.34-9745-beta-2020.04.05-tree/Linux/SoftEtherVPN-Bridge_v4.34-9745-beta-2020.04.05-linux-x64-64bit.tar.gz
+    dest: /tmp/softether.tar.gz
+
+- name: Extract SoftEther VPN server
+  unarchive:
+    src: /tmp/softether.tar.gz
+    dest: /opt/
+    remote_src: yes
+
+- name: Compile and install SoftEther VPN server
+  shell: |
+    cd /opt/vpnserver
+    make
+    ./vpnserver start
+    echo "/opt/vpnserver/vpnserver start" >> /etc/rc.local
+
+- name: Create systemd service for SoftEther
+  copy:
+    dest: /etc/systemd/system/vpnserver.service
+    content: |
+      [Unit]
+      Description=SoftEther VPN Server
+      After=network.target
+
+      [Service]
+      ExecStart=/opt/vpnserver/vpnserver start
+      ExecStop=/opt/vpnserver/vpnserver stop
+      WorkingDirectory=/opt/vpnserver
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable and start SoftEther VPN server service
+  systemd:
+    name: vpnserver
+    enabled: yes
+    state: started
+
